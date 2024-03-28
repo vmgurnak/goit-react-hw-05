@@ -1,0 +1,5 @@
+.MovieListLink {
+  color: var(--dark-blue);
+  margin-bottom: 5px;
+  text-decoration: underline var(--dark-blue);
+}

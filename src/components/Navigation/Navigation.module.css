@@ -1,0 +1,20 @@
+.header {
+  padding: 0 20px;
+  border-bottom: 2px solid var(--dark-grey);
+}
+
+.headerList {
+  display: flex;
+  padding-left: 15px;
+  gap: 15px;
+
+  font-size: 18px;
+}
+
+.headerLink {
+  padding: 20px 5px;
+}
+
+.active {
+  color: var(--dark-grey);
+}

@@ -1,0 +1,14 @@
+.HomePageWrap {
+  padding: 20px 10px;
+}
+
+.HomePageTitle {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.HomePageList {
+  padding-left: 40px;
+  list-style-type: disc;
+  /* list-style-position: outside; */
+}
