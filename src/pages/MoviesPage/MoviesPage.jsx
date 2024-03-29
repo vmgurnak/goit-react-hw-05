@@ -94,10 +94,10 @@ const MoviesPage = () => {
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
       <ul className={css.MoviesPageList}>
-        {movieList.map(({ id, alt_description }) => {
+        {movieList.map(({ id, title }) => {
           return (
             <li key={id}>
-              <MovieList id={id} alt_description={alt_description} />
+              <MovieList id={id} title={title} />
             </li>
           );
         })}

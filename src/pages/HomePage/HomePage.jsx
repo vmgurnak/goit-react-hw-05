@@ -10,6 +10,7 @@ import css from './HomePage.module.css';
 
 const HomePage = () => {
   const [movieList, setMovieList] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -41,10 +42,10 @@ const HomePage = () => {
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
       <ul className={css.HomePageList}>
-        {movieList.map(({ id, alt_description }) => {
+        {movieList.map(({ id, title }) => {
           return (
             <li key={id}>
-              <MovieList id={id} alt_description={alt_description} />
+              <MovieList id={id} title={title} />
             </li>
           );
         })}

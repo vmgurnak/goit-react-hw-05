@@ -1,32 +1,16 @@
 import axios from 'axios';
 
-export const requestProducts = async () => {
-  const { data } = await axios.get('https://dummyjson.com/products');
-  return data;
-};
+const API_KEY =
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YzcyM2ZiMmM5MTkxNGU3MWEzOGYzNDJjZjBmOGIwNCIsInN1YiI6IjY1M2ZkNzQyNTkwN2RlMDEzOGUyZGRjOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Sp8qMawUjEgzw9wcpwA81PeCZQ7W8tu-uYEsM9_rj70';
 
-export const requestProductsByQuery = async query => {
-  const { data } = await axios.get(
-    `https://dummyjson.com/products/search?q=${query}`
-  );
-  return data;
-};
-
-export const requestProductsById = async productId => {
-  const { data } = await axios.get(
-    `https://dummyjson.com/products/${productId}`
-  );
-  return data;
-};
-
-const requestMovie = async (query = 'sea', currentPage = 1) => {
-  const API_KEY = 'wA65yMsuVtaGEz26VTfXV2EuMFpmBDIORhh0BZRN2ls';
-  const BASE_URL = 'https://api.unsplash.com/search/photos';
+export const requestMovie = async () => {
+  const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/day';
   const config = {
     params: {
-      client_id: API_KEY,
-      query,
-      page: currentPage,
+      language: 'en-US',
+    },
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
     },
   };
 
@@ -34,17 +18,15 @@ const requestMovie = async (query = 'sea', currentPage = 1) => {
   return data;
 };
 
-export { requestMovie };
-
-const requestMovieByQuery = async (query, currentPage = 1, perPage) => {
-  const API_KEY = 'wA65yMsuVtaGEz26VTfXV2EuMFpmBDIORhh0BZRN2ls';
-  const BASE_URL = 'https://api.unsplash.com/search/photos';
+export const requestMovieByQuery = async query => {
+  const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
   const config = {
     params: {
-      client_id: API_KEY,
+      language: 'en-US',
       query,
-      page: currentPage,
-      per_page: perPage,
+    },
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
     },
   };
 
@@ -52,4 +34,17 @@ const requestMovieByQuery = async (query, currentPage = 1, perPage) => {
   return data;
 };
 
-export { requestMovieByQuery };
+export const requestMovieById = async id => {
+  const BASE_URL = 'https://api.themoviedb.org/3/movie/';
+  const config = {
+    params: {
+      language: 'en-US',
+    },
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  const { data } = await axios.get(`${BASE_URL}${id}`, config);
+  return data;
+};
