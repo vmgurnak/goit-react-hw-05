@@ -96,7 +96,7 @@ const MoviesPage = () => {
       <ul className={css.MoviesPageList}>
         {movieList.map(({ id, title }) => {
           return (
-            <li key={id}>
+            <li className={css.MoviesPageItem} key={id}>
               <MovieList id={id} title={title} />
             </li>
           );

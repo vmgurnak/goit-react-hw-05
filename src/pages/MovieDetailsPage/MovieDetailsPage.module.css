@@ -1,0 +1,35 @@
+.MovieWrap {
+  padding: 20px 10px;
+}
+
+.MovieInfoSection {
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid var(--dark-grey);
+}
+
+.MovieInfoWrap {
+  display: flex;
+  gap: 20px;
+}
+
+.MovieImg {
+  width: 400px;
+}
+
+.MovieContWrap {
+}
+
+.MovieTitle {
+}
+
+.OverviewTitle {
+}
+
+.OverviewCont {
+}
+
+.MovieGanresTitle {
+}
+
+.MovieGanresCont {
+}

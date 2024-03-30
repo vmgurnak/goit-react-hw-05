@@ -36,3 +36,7 @@
   list-style-type: disc;
   /* list-style-position: outside; */
 }
+
+.MoviesPageItem:not(:last-child) {
+  margin-bottom: 5px;
+}

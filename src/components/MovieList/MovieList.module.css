@@ -2,7 +2,3 @@
   color: var(--dark-blue);
   text-decoration: underline var(--dark-blue);
 }
-
-.MovieListLink:not(:last-child) {
-  margin-bottom: 5px;
-}

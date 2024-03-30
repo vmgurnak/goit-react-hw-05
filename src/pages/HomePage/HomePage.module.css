@@ -10,5 +10,8 @@
 .HomePageList {
   padding-left: 40px;
   list-style-type: disc;
-  /* list-style-position: outside; */
+}
+
+.HomePageItem:not(:last-child) {
+  margin-bottom: 5px;
 }

@@ -44,7 +44,7 @@ const HomePage = () => {
       <ul className={css.HomePageList}>
         {movieList.map(({ id, title }) => {
           return (
-            <li key={id}>
+            <li className={css.HomePageItem} key={id}>
               <MovieList id={id} title={title} />
             </li>
           );
