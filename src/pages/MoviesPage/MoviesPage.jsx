@@ -1,16 +1,16 @@
 // import toast library for notification when the form is empty
 import toast, { Toaster } from 'react-hot-toast';
-
 // import library Formik
-import { Formik, Form, Field } from 'formik';
 
 // import huks
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 // import components
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 import MovieList from '../../components/MovieList/MovieList';
+import SearchForm from '../../components/SearchForm/SearchForm';
 
 // import function request from api https://api.unsplash.com
 import { requestMovieByQuery } from '../../services/api';
@@ -19,9 +19,10 @@ import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   const [movieList, setMovieList] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query');
 
   useEffect(() => {
     if (searchQuery === null) {
@@ -55,41 +56,18 @@ const MoviesPage = () => {
     fetchDataByQuery();
   }, [searchQuery]);
 
-  // callback function for handlerSubmit
-  const onSetSearchQuery = query => {
+  // callback function for handlerSubmit SearchForm
+  const onSetSearchParams = query => {
     if (query === searchQuery) {
       return;
     }
-    setSearchQuery(query);
+    setSearchParams({ query: query });
     setMovieList([]);
-  };
-
-  // Callback function for Submit
-  const handlerSubmit = (values, actions) => {
-    if (!values.query.trim()) {
-      toast('Please enter your request.');
-      // alert('Please enter your request');
-      return;
-    }
-    onSetSearchQuery(values.query);
-    console.log(values.query);
-    actions.resetForm();
-  };
-
-  const initialValues = {
-    query: '',
   };
 
   return (
     <div className={css.MoviesPageWrap}>
-      <Formik initialValues={initialValues} onSubmit={handlerSubmit}>
-        <Form className={css.MoviesPageForm} autoComplete="off">
-          <Field className={css.MoviesPageInput} name="query" type="text" />
-          <button className={css.MoviesPageBtn} type="submit">
-            Search
-          </button>
-        </Form>
-      </Formik>
+      <SearchForm onSetSearchParams={onSetSearchParams} />
 
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}

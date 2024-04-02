@@ -1,0 +1,28 @@
+.MoviesPageForm {
+  display: flex;
+  max-width: 350px;
+  margin-bottom: 20px;
+}
+
+.MoviesPageInput {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--dark-grey);
+  border-radius: 3px;
+  outline: none;
+}
+
+.MoviesPageInput:focus {
+  border-color: var(--ligth-blue);
+  border-width: 2px;
+}
+
+.MoviesPageBtn {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid #1b1b1b;
+  background-color: var(--grey);
+}

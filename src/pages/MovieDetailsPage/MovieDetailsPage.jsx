@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link, Route, Routes, useParams } from 'react-router-dom';
+import { Link, Route, Routes, useParams, useLocation } from 'react-router-dom';
+// import react icons
+import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
@@ -13,13 +15,16 @@ import css from './MovieDetailsPage.module.css';
 const MovieDetailsPage = () => {
   // Get the movie ID from the URL parameter.
   const { movieId } = useParams();
-  const [movieData, setMovieData] = useState({});
+  const [movieData, setMovieData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
 
   console.log(movieId);
 
   useEffect(() => {
+    if (!movieId) return;
     async function fetchDataId() {
       try {
         setIsError(false);
@@ -43,41 +48,61 @@ const MovieDetailsPage = () => {
       <section className={css.MovieInfoSection}>
         {isError && <ErrorMessage />}
         {isLoading && <Loader />}
-        <div className={css.MovieInfoWrap}>
-          <img
-            className={css.MovieImg}
-            src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
-            alt=""
-          />
-          <div className={css.MovieContWrap}>
-            <h2 className={css.MovieTitle}>{movieData.title}</h2>
-            <p className={css.MovieTitle}>
-              User Score: {movieData.vote_average}
-            </p>
-            <h3 className={css.OverviewTitle}>Overview</h3>
-            <p className={css.OverviewCont}>{movieData.overview}</p>
-            <h4 className={css.MovieGanresTitle}>Genres</h4>
-            <p className={css.MovieGanresCont}>
-              {/* {movieData.genres[0].name.join(' ')} */}
-              {movieData.genres.map(({ name }) => name).join(' ')}
-            </p>
+        {movieData !== null && (
+          <div>
+            <div className={css.GoBackWrap}>
+              <Link className={css.GoBackLink} to={backLinkHref}>
+                Go back
+              </Link>
+              <FaArrowLeftLong className={css.GoBackIcon} size="16" />
+            </div>
+            <div className={css.MovieInfoWrap}>
+              <div className={css.MovieImgWrap}>
+                <img
+                  className={css.MovieImg}
+                  src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
+                  alt=""
+                />
+              </div>
+              <div className={css.MovieContWrap}>
+                <h2 className={css.MovieTitle}>{movieData.title}</h2>
+                <p className={css.MovieScore}>
+                  User Score: {movieData.vote_average}
+                </p>
+                <h3 className={css.OverviewTitle}>Overview</h3>
+                <p className={css.OverviewCont}>{movieData.overview}</p>
+                <h4 className={css.MovieGanresTitle}>Genres</h4>
+                <p className={css.MovieGanresCont}>
+                  {movieData.genres.map(({ name }) => name).join(' ')}
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </section>
       <section className={css.AddInfoSection}>
         <div className={css.AddInfoWrap}>
-          <h4>Additional information</h4>
+          <h4 className={css.AddInfoTitle}>Additional information</h4>
           <ul className={css.AddInfoList}>
-            <Link className={css.AddInfoLink}>Cast</Link>
-            <Link className={css.AddInfoLink}>Reviews</Link>
+            <li className={css.AddInfoItem}>
+              <Link to="cast" className={css.AddInfoLink}>
+                Cast
+              </Link>
+            </li>
+            <li className={css.AddInfoItem}>
+              <Link to="reviews" className={css.AddInfoLink}>
+                Reviews
+              </Link>
+            </li>
           </ul>
         </div>
-        <div className={css.AddInfoCont}>
-          <Routes>
-            <Route path="cast" element={<MovieCast />} />
-            <Route path="reviews" element={<MovieReviews />} />
-          </Routes>
-        </div>
+        <div className={css.AddInfoCont}></div>
+      </section>
+      <section>
+        <Routes>
+          <Route path="cast" element={<MovieCast />} />
+          <Route path="reviews" element={<MovieReviews />} />
+        </Routes>
       </section>
     </div>
   );
