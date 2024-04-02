@@ -6,10 +6,8 @@ import { Formik, Form, Field } from 'formik';
 
 import css from './SearchForm.module.css';
 
-const SearchForm = ({ onSetSearchParams }) => {
-  const initialValues = {
-    query: '',
-  };
+const SearchForm = ({ onSetSearchParams, searchQuery }) => {
+  const initialValues = { query: searchQuery ?? '' };
 
   const handlerSubmit = (values, actions) => {
     if (!values.query.trim()) {
@@ -18,7 +16,7 @@ const SearchForm = ({ onSetSearchParams }) => {
       return;
     }
     onSetSearchParams(values.query);
-    actions.resetForm();
+    //  actions.resetForm();
   };
 
   return (

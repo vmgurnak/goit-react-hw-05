@@ -48,3 +48,18 @@ export const requestMovieById = async id => {
   const { data } = await axios.get(`${BASE_URL}${id}`, config);
   return data;
 };
+
+export const requestMovieByCast = async id => {
+  const BASE_URL = 'https://api.themoviedb.org/3/movie/';
+  const config = {
+    params: {
+      language: 'en-US',
+    },
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  const { data } = await axios.get(`${BASE_URL}${id}/credits`, config);
+  return data;
+};

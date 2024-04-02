@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link, Route, Routes, useParams, useLocation } from 'react-router-dom';
 // import react icons
 import { FaArrowLeftLong } from 'react-icons/fa6';
@@ -19,7 +19,7 @@ const MovieDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkRef = useRef(location.state ?? '/movies');
 
   console.log(movieId);
 
@@ -51,7 +51,7 @@ const MovieDetailsPage = () => {
         {movieData !== null && (
           <div>
             <div className={css.GoBackWrap}>
-              <Link className={css.GoBackLink} to={backLinkHref}>
+              <Link className={css.GoBackLink} to={backLinkRef.current}>
                 Go back
               </Link>
               <FaArrowLeftLong className={css.GoBackIcon} size="16" />

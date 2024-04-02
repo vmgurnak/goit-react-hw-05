@@ -6,11 +6,7 @@ const MovieList = ({ id, title }) => {
   const location = useLocation();
   return (
     <div>
-      <Link
-        className={css.MovieListLink}
-        to={`/movies/${id}`}
-        state={{ from: location }}
-      >
+      <Link className={css.MovieListLink} to={`/movies/${id}`} state={location}>
         {title}
       </Link>
     </div>

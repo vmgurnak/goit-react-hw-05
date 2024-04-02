@@ -67,8 +67,10 @@ const MoviesPage = () => {
 
   return (
     <div className={css.MoviesPageWrap}>
-      <SearchForm onSetSearchParams={onSetSearchParams} />
-
+      <SearchForm
+        onSetSearchParams={onSetSearchParams}
+        searchQuery={searchQuery}
+      />
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
       <ul className={css.MoviesPageList}>
@@ -80,7 +82,6 @@ const MoviesPage = () => {
           );
         })}
       </ul>
-
       <Toaster
         position="top-right"
         toastOptions={{
