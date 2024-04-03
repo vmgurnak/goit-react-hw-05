@@ -14,16 +14,12 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  console.log(movieList);
-
   useEffect(() => {
     async function fetchData() {
       try {
         setIsError(false);
         setIsLoading(true);
         const data = await requestMovie();
-        console.log(data);
-        console.log(data.results);
         setMovieList(data.results);
       } catch (err) {
         setIsError(true);

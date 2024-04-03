@@ -33,9 +33,6 @@ const MoviesPage = () => {
         setIsError(false);
         setIsLoading(true);
         const data = await requestMovieByQuery(searchQuery);
-        console.log(data);
-        console.log(data.results);
-
         if (data.results.length === 0) {
           toast(
             'Sorry, there are no movies your search query. Please try again.'

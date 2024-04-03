@@ -17,13 +17,11 @@ const MovieCast = () => {
       try {
         setIsError(false);
         const data = await requestMovieByCast(movieId);
-        console.log(data);
-        console.log(data.cast);
+
         setMovieCast(data.cast);
       } catch (err) {
         setIsError(true);
         console.log(err);
-      } finally {
       }
     }
 

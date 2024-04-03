@@ -1,12 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense, lazy } from 'react';
 import { Link, Route, Routes, useParams, useLocation } from 'react-router-dom';
 // import react icons
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
-import MovieCast from '../../components/MovieCast/MovieCast';
-import MovieReviews from '../../components/MovieReviews/MovieReviews';
+// import MovieCast from '../../components/MovieCast/MovieCast';
+// import MovieReviews from '../../components/MovieReviews/MovieReviews';
+
+const MovieCast = lazy(() => import('../../components/MovieCast/MovieCast'));
+const MovieReviews = lazy(() =>
+  import('../../components/MovieReviews/MovieReviews')
+);
 
 import { requestMovieById } from '../../services/api';
 
@@ -21,8 +26,6 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? '/movies');
 
-  console.log(movieId);
-
   useEffect(() => {
     if (!movieId) return;
     async function fetchDataId() {
@@ -30,7 +33,6 @@ const MovieDetailsPage = () => {
         setIsError(false);
         setIsLoading(true);
         const data = await requestMovieById(movieId);
-        console.log(data);
         setMovieData(data);
       } catch (err) {
         setIsError(true);
@@ -39,7 +41,6 @@ const MovieDetailsPage = () => {
         setIsLoading(false);
       }
     }
-
     fetchDataId();
   }, [movieId]);
 
@@ -99,10 +100,12 @@ const MovieDetailsPage = () => {
         <div className={css.AddInfoCont}></div>
       </section>
       <section>
-        <Routes>
-          <Route path="cast" element={<MovieCast />} />
-          <Route path="reviews" element={<MovieReviews />} />
-        </Routes>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Routes>
+        </Suspense>
       </section>
     </div>
   );
