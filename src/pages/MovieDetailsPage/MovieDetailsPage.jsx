@@ -5,8 +5,6 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
-// import MovieCast from '../../components/MovieCast/MovieCast';
-// import MovieReviews from '../../components/MovieReviews/MovieReviews';
 
 const MovieCast = lazy(() => import('../../components/MovieCast/MovieCast'));
 const MovieReviews = lazy(() =>
@@ -21,7 +19,6 @@ const MovieDetailsPage = () => {
   // Get the movie ID from the URL parameter.
   const { movieId } = useParams();
   const [movieData, setMovieData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? '/movies');
@@ -31,14 +28,11 @@ const MovieDetailsPage = () => {
     async function fetchDataId() {
       try {
         setIsError(false);
-        setIsLoading(true);
         const data = await requestMovieById(movieId);
         setMovieData(data);
       } catch (err) {
         setIsError(true);
         setMovieData({});
-      } finally {
-        setIsLoading(false);
       }
     }
     fetchDataId();
@@ -48,7 +42,6 @@ const MovieDetailsPage = () => {
     <div className={css.MovieWrap}>
       <section className={css.MovieInfoSection}>
         {isError && <ErrorMessage />}
-        {isLoading && <Loader />}
         {movieData !== null && (
           <div>
             <div className={css.GoBackWrap}>
