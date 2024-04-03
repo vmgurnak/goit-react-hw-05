@@ -8,6 +8,7 @@ import { useSearchParams } from 'react-router-dom';
 
 // import components
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Loader from '../../components/Loader/Loader';
 import MovieList from '../../components/MovieList/MovieList';
 import SearchForm from '../../components/SearchForm/SearchForm';
 
@@ -18,6 +19,7 @@ import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   const [movieList, setMovieList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
@@ -29,6 +31,7 @@ const MoviesPage = () => {
     async function fetchDataByQuery() {
       try {
         setIsError(false);
+        setIsLoading(true);
         const data = await requestMovieByQuery(searchQuery);
         if (data.results.length === 0) {
           toast(
@@ -42,6 +45,8 @@ const MoviesPage = () => {
       } catch (err) {
         setIsError(true);
         setMovieList([]);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -64,6 +69,7 @@ const MoviesPage = () => {
         searchQuery={searchQuery}
       />
       {isError && <ErrorMessage />}
+      {isLoading && <Loader />}
       <ul className={css.MoviesPageList}>
         {movieList.map(({ id, title }) => {
           return (
