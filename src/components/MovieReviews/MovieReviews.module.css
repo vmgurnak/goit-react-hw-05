@@ -1,0 +1,22 @@
+.MovieReviewsWrap {
+  padding: 25px 10px 20px 10px;
+}
+
+.MovieReviewsList {
+  padding-left: 40px;
+  list-style-type: disc;
+}
+
+.MovieReviewsItem:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.MovieReviewsAuthor {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.MovieReviewsCont {
+  font-weight: 400;
+  line-height: 1.3;
+}

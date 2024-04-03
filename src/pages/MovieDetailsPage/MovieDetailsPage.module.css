@@ -9,9 +9,6 @@
 
 .GoBackWrap {
   position: relative;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   max-width: 100px;
   margin-bottom: 10px;
   background-color: var(--grey);
@@ -28,17 +25,29 @@
   position: absolute;
   top: 7px;
   left: 7px;
-  color: var(--dark-blue);
 }
 
 .MovieInfoWrap {
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .MovieInfoWrap {
+    flex-direction: row;
+    gap: 30px;
+  }
 }
 
 .MovieImgWrap {
-  flex-basis: 400px;
-  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .MovieImgWrap {
+    flex-basis: 400px;
+  }
 }
 
 .MovieImg {
@@ -50,6 +59,12 @@
 
 .MovieContWrap {
   padding: 20px 10px 20px 0;
+}
+
+@media (min-width: 768px) {
+  .MovieContWrap {
+    width: calc(100% - 430px);
+  }
 }
 
 .MovieTitle {

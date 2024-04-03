@@ -6,7 +6,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 import MovieCast from '../../components/MovieCast/MovieCast';
-import { MovieReviews } from '../../components/MovieReviews/MovieReviews';
+import MovieReviews from '../../components/MovieReviews/MovieReviews';
 
 import { requestMovieById } from '../../services/api';
 
