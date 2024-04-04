@@ -19,7 +19,6 @@ const MovieCast = () => {
         const data = await requestMovieByCast(movieId);
 
         setMovieCast(data.cast);
-        console.log(data.cast);
       } catch (err) {
         setIsError(true);
         console.log(err);

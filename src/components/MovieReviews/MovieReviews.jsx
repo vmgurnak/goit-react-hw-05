@@ -17,7 +17,6 @@ const MovieReviews = () => {
       try {
         setIsError(false);
         const data = await requestMovieByReviews(movieId);
-        console.log(data.results);
         setMovieReviews(data.results);
       } catch (err) {
         setIsError(true);
