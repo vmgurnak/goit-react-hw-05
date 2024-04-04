@@ -70,15 +70,7 @@ const MoviesPage = () => {
       />
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
-      <ul className={css.MoviesPageList}>
-        {movieList.map(({ id, title }) => {
-          return (
-            <li className={css.MoviesPageItem} key={id}>
-              <MovieList id={id} title={title} />
-            </li>
-          );
-        })}
-      </ul>
+      <MovieList movieList={movieList} />
       <Toaster
         position="top-right"
         toastOptions={{

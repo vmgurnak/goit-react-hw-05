@@ -17,6 +17,7 @@ const MovieReviews = () => {
       try {
         setIsError(false);
         const data = await requestMovieByReviews(movieId);
+        console.log(data.results);
         setMovieReviews(data.results);
       } catch (err) {
         setIsError(true);
@@ -24,7 +25,7 @@ const MovieReviews = () => {
       }
     }
     fetchDataReviews();
-  }, []);
+  }, [movieId]);
 
   return (
     <div className={css.MovieReviewsWrap}>
@@ -42,6 +43,11 @@ const MovieReviews = () => {
             );
           })}
         </ul>
+      )}
+      {movieReviews !== null && movieReviews.length === 0 && (
+        <p className={css.MovieReviewsNotif}>
+          We don&apos;t have any reviews for this movie
+        </p>
       )}
     </div>
   );

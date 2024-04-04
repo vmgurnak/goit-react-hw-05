@@ -1,6 +1,5 @@
 .header {
-  padding: 0 20px;
-  border-bottom: 2px solid var(--dark-grey);
+  padding: 0 15px;
 }
 
 .headerList {
@@ -9,6 +8,7 @@
   gap: 15px;
 
   font-size: 18px;
+  border-bottom: 2px solid var(--dark-grey);
 }
 
 .headerLink {

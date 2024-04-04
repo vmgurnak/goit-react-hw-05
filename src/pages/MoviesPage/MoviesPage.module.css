@@ -5,7 +5,6 @@
 .MoviesPageList {
   padding-left: 40px;
   list-style-type: disc;
-  /* list-style-position: outside; */
 }
 
 .MoviesPageItem:not(:last-child) {

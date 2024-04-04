@@ -12,7 +12,6 @@ const SearchForm = ({ onSetSearchParams, searchQuery }) => {
   const handlerSubmit = (values, actions) => {
     if (!values.query.trim()) {
       toast('Please enter your request.');
-      // alert('Please enter your request');
       return;
     }
     onSetSearchParams(values.query);

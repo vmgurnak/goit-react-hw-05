@@ -19,6 +19,7 @@ const MovieCast = () => {
         const data = await requestMovieByCast(movieId);
 
         setMovieCast(data.cast);
+        console.log(data.cast);
       } catch (err) {
         setIsError(true);
         console.log(err);
@@ -26,18 +27,18 @@ const MovieCast = () => {
     }
 
     fetchDataCast();
-  }, []);
+  }, [movieId]);
 
   return (
     <div className={css.MovieCastWrap}>
       {isError && <ErrorMessage />}
       {movieCast !== null && (
         <ul className={css.MovieCastList}>
-          {movieCast.map(({ cast_id, name, character, profile_path }) => {
+          {movieCast.map(({ id, name, character, profile_path }) => {
             return (
               <>
                 {profile_path !== null && (
-                  <li className={css.MovieCastItem} key={cast_id}>
+                  <li className={css.MovieCastItem} key={id}>
                     <img
                       className={css.MovieCastImg}
                       src={`https://image.tmdb.org/t/p/w500${profile_path}`}

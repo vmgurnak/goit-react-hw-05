@@ -1,3 +1,12 @@
+.MovieList {
+  padding-left: 40px;
+  list-style-type: disc;
+}
+
+.MovieListItem:not(:last-child) {
+  margin-bottom: 5px;
+}
+
 .MovieListLink {
   color: var(--dark-blue);
   text-decoration: underline var(--dark-blue);

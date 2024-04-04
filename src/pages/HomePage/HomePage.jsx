@@ -30,15 +30,7 @@ const HomePage = () => {
     <div className={css.HomePageWrap}>
       <h2 className={css.HomePageTitle}>Trending today</h2>
       {isError && <ErrorMessage />}
-      <ul className={css.HomePageList}>
-        {movieList.map(({ id, title }) => {
-          return (
-            <li className={css.HomePageItem} key={id}>
-              <MovieList id={id} title={title} />
-            </li>
-          );
-        })}
-      </ul>
+      <MovieList movieList={movieList} />
     </div>
   );
 };
