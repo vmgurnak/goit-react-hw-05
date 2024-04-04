@@ -6,12 +6,3 @@
   font-size: 28px;
   margin-bottom: 20px;
 }
-
-.HomePageList {
-  padding-left: 40px;
-  list-style-type: disc;
-}
-
-.HomePageItem:not(:last-child) {
-  margin-bottom: 5px;
-}

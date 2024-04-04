@@ -1,12 +1,3 @@
 .MoviesPageWrap {
   padding: 20px 15px;
 }
-
-.MoviesPageList {
-  padding-left: 40px;
-  list-style-type: disc;
-}
-
-.MoviesPageItem:not(:last-child) {
-  margin-bottom: 5px;
-}
