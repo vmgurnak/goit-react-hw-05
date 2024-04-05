@@ -33,12 +33,10 @@ const MovieReviews = () => {
         <ul className={css.MovieReviewsList}>
           {movieReviews.map(({ id, author, content }) => {
             return (
-              <div key={id}>
-                <li className={css.MovieReviewsItem}>
-                  <p className={css.MovieReviewsAuthor}>Author: {author}</p>
-                  <p className={css.MovieReviewsCont}>{content}</p>
-                </li>
-              </div>
+              <li className={css.MovieReviewsItem} key={id}>
+                <p className={css.MovieReviewsAuthor}>Author: {author}</p>
+                <p className={css.MovieReviewsCont}>{content}</p>
+              </li>
             );
           })}
         </ul>
