@@ -1,4 +1,4 @@
-import { Children, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -33,12 +33,12 @@ const MovieReviews = () => {
         <ul className={css.MovieReviewsList}>
           {movieReviews.map(({ id, author, content }) => {
             return (
-              <>
-                <li className={css.MovieReviewsItem} key={id}>
+              <div key={id}>
+                <li className={css.MovieReviewsItem}>
                   <p className={css.MovieReviewsAuthor}>Author: {author}</p>
                   <p className={css.MovieReviewsCont}>{content}</p>
                 </li>
-              </>
+              </div>
             );
           })}
         </ul>
